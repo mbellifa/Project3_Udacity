@@ -27,19 +27,19 @@ To run the actual application run application.py. This will listen on port 8000 
 
 The application provides the following endpoints for programmatic acccess.
 
-* /recent-categories.atom - An Atom feed that lists the latest categories by creation date.
-* /recent-items.atom - An Atom feed that lists the latest items by creation date.
-* /category/<category_name>/json - Lists all items in a category in JSON format.
-* /categories/json - Lists all categories in JSON format.
+* `/recent-categories.atom` - An Atom feed that lists the latest categories by creation date.
+* `/recent-items.atom` - An Atom feed that lists the latest items by creation date.
+* `/category/<category_name>/json` - Lists all items in a category in JSON format.
+* `/categories/json` - Lists all categories in JSON format.
 
 ## General Routes
 
-* / - Index page which lists the 10 largest categories and 10 of the latest items.
-* /login - A login page which contains the Google+ login button.
-* /logout - A logout page.
-* /category/new - Form to create a new category, requires logging in.
-* /category/<category> - Page to view all items in a category.
-* /item/<category>/<item_name>/view - Page to view a particular item.
-* /item/<category>/<item_name>/edit - Page to edit a particular item.
-* /item/<category>/<item_name>/delete - Page to delete a particular item.
+* `/` - Index page which lists the 10 largest categories and 10 of the latest items.
+* `/login` - A login page which contains the Google+ login button.
+* `/logout` - A logout page.
+* `/category/new` - Form to create a new category, requires logging in.
+* `/category/<category>` - Page to view all items in a category.
+* `/item/<category>/<item_name>/view` - Page to view a particular item.
+* `/item/<category>/<item_name>/edit` - Page to edit a particular item.
+* `/item/<category>/<item_name>/delete` - Page to delete a particular item.
 
