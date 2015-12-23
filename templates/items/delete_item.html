@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block title %}Delete an Item{% endblock %}
+{% block content %}
+    <p><b>Delete an Item</b></p>
+    <div class="row">
+        <div class="twelve columns">
+            <form action="{{ url_for('delete_item', category=category, name=item.name) }}" method="post">
+                <p>Are you sure you want to delete the item named '{{item.name}}'? This change cannot be reverted.</p>
+                <input name="_csrf_token" type="hidden" value="{{ csrf_token() }}">
+                <input type="submit" value="Delete Item">
+            </form>
+        </div>
+    </div>
+{% endblock %}

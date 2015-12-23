@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="four columns">
+            <h2>Categories</h2>
+            <ul>
+            {% for category in categories %}
+                <li><a href="{{url_for('show_category', category=category.name)}}">{{category.name}} ({{category.count}})</a></li>
+            {% else %}
+                <li><i>No categories found.</i></li>
+            {% endfor %}
+
+            </ul>
+            {% if user_logged_in() %}
+            <p><a href="{{url_for('new_category')}}" class="button">Create Category</a></p>
+            {% endif %}
+        </div>
+        <div class="eight columns">
+            <h2>Latest Items</h2>
+            <ul>
+            {% for item in items %}
+                <li><a href="{{url_for('show_item', category=item.category.name, name=item.name)}}">{{item.name}}</a></li>
+            {% else %}
+                <li><i>No items found.</i></li>
+            {% endfor %}
+
+            </ul>
+
+        </div>
+    </div>
+{% endblock %}

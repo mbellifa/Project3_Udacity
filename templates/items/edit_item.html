@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block title %}Edit an Item{% endblock %}
+{% block content %}
+    <p><b>Edit an Item</b></p>
+    <div class="row">
+        <div class="twelve columns">
+            <form action="{{ url_for('edit_item', category=category, name=item.name) }}" method="post" enctype="multipart/form-data">
+                <p>Name: <input type="text" name="name" value="{{item.name}}"></p>
+                <p>Description: <textarea name="description">{{item.description}}</textarea></p>
+
+                <p>Picture:<br>{% if item.picture %}
+                    <img src="{{ url_for('uploaded_file', filename=item.picture) }}">
+                    {% else %}
+                    (No picture)
+                    {% endif %}
+                    <br>
+                    Replace Picture: <input type="file" name="picture">
+                </p>
+                <input name="_csrf_token" type="hidden" value="{{ csrf_token() }}">
+
+                <input type="submit" value="Edit Item">
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block title %}Create a Category{% endblock %}
+{% block content %}
+    <p><b>Create a Category</b></p>
+    <div class="row">
+        <div class="twelve columns">
+            <form action="{{ url_for('new_category') }}" method="post">
+                <p>Name: <input type="text" name="name"></p>
+                <input name="_csrf_token" type="hidden" value="{{ csrf_token() }}">
+                <input type="submit" value="Create Category">
+            </form>
+        </div>
+    </div>
+{% endblock %}

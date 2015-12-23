@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block title %}Create an Item{% endblock %}
+{% block content %}
+    <p><b>{{categoryName}} Items</b></p>
+    <div class="row">
+        <div class="twelve columns">
+            <ul>
+            {% for item in items %}
+                <li><a href="{{url_for('show_item', category=categoryName, name=item.name)}}">{{item.name}}</a></li>
+            {% else %}
+                <li><i>No items found.</i></li>
+            {% endfor %}
+            </ul>
+            <p><a href="{{url_for('new_item',category=categoryName)}}" class="button">Create a New Item</a></p>
+        </div>
+    </div>
+{% endblock %}
+;

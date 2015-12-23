@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block title %}Create an Item{% endblock %}
+{% block content %}
+    <p><b>Create an Item</b></p>
+    <div class="row">
+        <div class="twelve columns">
+            <form action="{{ url_for('new_item', category=category) }}" method="post" enctype="multipart/form-data">
+                <p>Name: <input type="text" name="name"></p>
+                <p>Description: <textarea name="description"></textarea></p>
+                <p>Picture: <input type="file" name="picture"></p>
+                <input name="_csrf_token" type="hidden" value="{{ csrf_token() }}">
+                <input type="submit" value="Create Item">
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block title %}Create an Item{% endblock %}
+{% block content %}
+    <p><b><a href="{{url_for('show_category', category=categoryName)}}">{{categoryName}}</a>: {{item.name}}</b></p>
+    <div class="row">
+        <div class="twelve columns">
+            {% if item.picture is string %}
+            <img src="{{url_for('uploaded_file', filename=item.picture)}}">
+            {% endif %}
+
+            <p>{{item.description}}</p>
+            {% if user_logged_in() and session.user_id == item.owner_id %}
+            <p><a href="{{url_for('edit_item', category=categoryName, name=item.name)}}" class="button">Edit Item</a> <a href="{{url_for('delete_item', category=categoryName, name=item.name)}}" class="button">Delete Item</a></p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+;

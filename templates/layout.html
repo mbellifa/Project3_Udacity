@@ -1,0 +1,46 @@
+<!doctype html>
+<html> {# Inheritance code from:
+http://flask.pocoo.org/docs/0.10/patterns/templateinheritance/ #}
+<head>
+    {% block head %}
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/normalize.css') }}">
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/skeleton.css') }}">
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+    <script type="text/javascript"
+            src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <link href="{{ url_for('recent_categories_feed') }}" rel="alternate"
+          title="Recent Categories" type="application/atom+xml">
+    <link href="{{ url_for('recent_items_feed') }}" rel="alternate"
+          title="Recent Items" type="application/atom+xml">
+    <title>{% block title %}{% endblock %} - Catalog</title>
+    {% endblock %}
+</head>
+<body>
+<div class="container">
+    <div id="content">
+        {% block topbar %}
+        <div class="row">
+            <div class="nine columns header">
+                <h1><a href="{{url_for('index')}}">Catalog App</a></h1>
+            </div>
+            <div class="three columns">
+                {% if not user_logged_in() %}
+                <a href="{{url_for('show_login')}}" class="loginButton button">Login</a>
+                {% else %}
+                <p>
+                    <b>Welcome {{session.username}}!</b><br>
+                    <a href="{{url_for('show_logout')}}" class="logoutButton button">Logout</a>
+                </p>
+                {% endif %}
+            </div>
+        </div>
+        {% endblock %}
+        {% block content %}{% endblock %}
+    </div>
+</div>
+{% block endscript %}{% endblock %}
+</body>
+</html>

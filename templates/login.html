@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+{% block head %}
+{{ super() }}
+<script src = "https://plus.google.com/js/client:platform.js" async defer></script>
+
+{% endblock %}
+{% block title %}Login{% endblock %}
+{% block content %}
+    <h1>Login</h1>
+    <div class="row">
+        <div class="twelve columns">
+            <div id="signinButton">
+                <span class="g-signin"
+                  data-scope="openid email"
+                  data-clientid="185903253476-3jpb5j54fm0fn9k0qv0upfir3uo9rua4.apps.googleusercontent.com"
+                  data-redirecturi="postmessage"
+                  data-accesstype="offline"
+                  data-callback="signInCallback"
+                  data-cookiepolicy="single_host_origin"
+                  data-approvalprompt="force"></span>
+
+            </div>
+            <div id="result"></div>
+        </div>
+    </div>
+{% endblock %}
+{% block endscript %}
+<script type="text/javascript">
+    signInCallback = function (authResult) {
+        if (authResult['code']) {
+            $('#signinButton').hide();
+            $.ajax({
+                type: 'POST',
+                url: '/gconnect?state={{STATE}}',
+                processData: false,
+                contentType: 'application/octet-stream; charset=utf-8',
+                data: authResult['code'],
+                success: function(result) {
+                    if (result) {
+                        $('#result').html('Login Successful!<br>' + result + '<br>Redirecting...');
+                        setTimeout(function () {
+                            window.location.href = '/';
+                        }, 500);
+                    }
+
+                }
+            });
+        }
+    };
+</script>
+{% endblock %}
